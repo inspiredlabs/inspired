@@ -1,0 +1,37 @@
+<main class="mr-auto ml-auto w-60">
+  <div class="flex flex-wrap justify-between bg-gold">
+    <code class="w-30">
+      <div class='relative w-100 overflow-hidden bg-cobalt'>
+          <div class='absolute top-0 bottom-0 left-0 right-0'>
+              test
+          </div>
+      </div>
+    </code>
+
+        <code class="w-30">
+      <div class='relative w-100 overflow-hidden bg-cobalt'>
+          <div class='absolute top-0 bottom-0 left-0 right-0'>
+              test
+          </div>
+      </div>
+    </code>
+
+    <code class="w-30">
+      <figure class='ma0 relative w-100 overflow-hidden bg-cobalt'>
+          <figcaption class='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center'>
+              test
+          </figcaption>
+      </figure>
+    </code>
+
+  </div>
+<main>
+  <style>
+    /* learn: https://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsive-square/28985475#28985475 */
+    figure:before{
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+  </style>
+	<link rel="stylesheet" href="https://instantwebapp.com/css/tachyon.shower.css">
