@@ -22,7 +22,3 @@
 		{/if}
 	</figcaption>
 </figure>
-
-<style>
-.square { aspect-ratio: 1 / 1 }
-</style>

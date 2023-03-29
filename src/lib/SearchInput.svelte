@@ -21,6 +21,7 @@
 
 	<form on:submit|preventDefault={() => search = $searchStore}>
 		<input
+			id="searchEntry"
 			type="search"
 			class="highlight source-sans fw3 input-reset bn bg-transparent transition hover-o-100 o-80 flex items-center pa0 pt2 pb2"
 			placeholder="Search"

@@ -6,7 +6,7 @@
 
 	NProgress.configure({
 		// Full list: https://github.com/rstacruz/nprogress#configuration
-		minimum: 0.2,
+		minimum: 0.01,
     showSpinner: false
 	});
 
@@ -19,8 +19,8 @@
 <style>
 :root {
 --color: linear-gradient(90deg, transparent 0%, var(--accent) 100%);
---height: 3px;
---accent: #000; /*cyan*/
+--height: 2px;
+--accent: #383838; /*cyan*/
 }
 /* Make clicks pass-through */
 :global(#nprogress) {

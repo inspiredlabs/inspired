@@ -1,6 +1,7 @@
 <script>
   import InspectorGadget from '$lib/InspectorGadget.svelte';
   import Serp from '$lib/Serp.svelte'
+  import IntroBanner from '$lib/IntroBanner.svelte'
 	import DetailsSummary from '$lib/DetailsSummary.svelte'
   import NavRight from '$lib/NavRight.svelte'
 	import Nprogress from '$lib/Nprogress.svelte';
@@ -21,9 +22,12 @@
 
 <Nprogress />
 
-<main class="w-100 source-sans charcoal lh-copy f4 flex flex-wrap pt6 ">
-  <slot />
-  <NavRight />
+<main class="w-100 source-sans charcoal lh-copy f4 flex flex-wrap ">
+  <!-- <IntroBanner /> -->
+  <div class="w-100 pt5">
+    <slot />
+    <NavRight />
+  </div>
 </main>
 
 <style>
@@ -142,4 +146,12 @@
 :global(.hover-bw2:active) {
   border-width: 0.25rem
 }
+
+:global(.hover-bw1:hover),
+:global(.hover-bw1:active) {
+  border-width: 0.125rem
+}
+
+:global(.square) { aspect-ratio: 1 / 1 }
+
 </style>

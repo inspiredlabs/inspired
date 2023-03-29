@@ -9,9 +9,11 @@ import { browser } from '$app/environment'; // LEARN: `browser` is required in S
 
 export const searchStore = writable(''); // consider: youtube.com/watch?v=6uNwXEyIGI4
 
-export const activeIndexStore = writable(0); // working: svelte.dev/repl/35171c0621ce426e83bec021d3ddf60d
-
+// working: svelte.dev/repl/35171c0621ce426e83bec021d3ddf60d
+export const activeIndexStore = writable(0);
+export const dockStore = writable(false);
 export const modalOpen = writable(false);
-
-export const yCorrect = writable(333);
+export const yCorrect = writable(0);
 export const yPosNew = writable(0);
+
+

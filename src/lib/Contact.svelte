@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<li id="contact" class="" style="padding-bottom: 60vh">
+<li id="contact" class="relative z-0" style="padding-bottom: 60vh">
 <div class="flex justify-end w-80 w-70-m w-70-l ma0 ">
 
 	<div class="w-100 flex flex-wrap justify-end">

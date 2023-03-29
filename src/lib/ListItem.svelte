@@ -1,12 +1,16 @@
 <script>
 	import { onMount } from 'svelte';
-	import { modalOpen, activeIndexStore, searchStore } from '$lib/stores';
+	import { yCorrect, modalOpen, activeIndexStore, searchStore } from '$lib/stores';
 	import SocialMedia from '$lib/SocialMedia.svelte';
 	import Thumbnail from '$lib/Thumbnail.svelte';
 	import { marked } from 'marked'
 	import animatedDetails from 'svelte-animated-details';
 
-	export let animations, background, caption, client, contract, content, contents, conclusion, development, graphics, images, location, overview, revealed, shot, tags, tint;
+	//import { items } from "$routes/items.js";
+	import { projects } from "$routes/projects.js";
+	const mergedItems = projects.flatMap(project => project.graphics);
+
+	export let fragment, frag, project, animations, background, caption, client, contract, content, contents, cite, conclude, development, endorsement, graphics, images, location, overview, revealed, shot, tags, tint;
 
 	// on:mouseenter={() => { willChange = true }}
 	// on:mouseleave={() => { willChange = false }}
@@ -54,10 +58,13 @@
 		}, 1);
 	});
 
+	let y = 0;
 </script>
 
+<svelte:window bind:scrollY={y} />
+
 <!-- debug: id="{urlize(caption)}" -->
-<li class=" { revealed ? 'revealed' : '' }">
+<li class=" { revealed ? 'revealed' : '' }" id="test-{project}">
 <details
 	class="flex justify-end w-80 w-70-m w-70-l ma0 transition overflow-hidden hover-custom"
 	use:animatedDetails={{ duration }}
@@ -90,7 +97,6 @@
 	</summary>
 	<article class="w-100 flex flex-wrap items-center justify-end pb6">
 		<main class="w-100 w-75-l mw-custom-l pl3">
-
 			<section>
 				{#each tags as tag}
 				<small
@@ -106,7 +112,7 @@
 				<hr class="ba b--black-10 w-100"/>
 			</section>
 
-			<!-- {#if contents}
+			<!-- usage: {#if contents}
 			<section class="highlight">
 				{#each contents as content, i }
 					{@html marked(content) }
@@ -123,112 +129,116 @@
 			</section>
 			{/if}
 
-			{#if graphics}
-			<aside class="bg-yellow">
-			<h4 class="w-100 pt4">Graphics</h4>
-				{#each graphics as {title, src, description, link}, i }
-					<span>{title}</span>
-					<span>{description}</span>
-					<hr>
-				{/each}
-			</aside>
-			{/if}
-
-			<span
-				class="b red underline"
-				on:mouseover={ () => $activeIndexStore = 2 }
-				on:click={ () => $modalOpen = true }
-				on:keypress
-				on:focus>culpa qui, {$modalOpen}</span>
-
 			{#if development}
-			<h4 class="w-100 pt4">Development</h4>
-			<section class="no-clutter grid grid-columns-2 grid-columns-3-l gc3 gr3 w-100">
-				{#each development as {title, src, description, link}, i }
-				{#if title !== undefined && !title.toLowerCase().includes('draft') }
-					<a
-					href="{!link ? src : link}"
-					class="link ">
-						<Thumbnail {title} {src} {description} />
-					</a>
-				{/if}
-				{/each}
-			</section>
-			{/if}
-
-			{#if animations}
-			<h4 class="w-100 pt4">Animation</h4>
-			<section class="no-clutter grid grid-columns-2 grid-columns-3-l gc3 gr3 w-100">
-				{#each animations as {title, src, description, link}, i }
-				{#if title !== undefined && !title.toLowerCase().includes('draft') }
-					<a
-					href="{!link ? src : link}"
-					class="link ">
-						<Thumbnail {title} {src} {description} />
-					</a>
-				{/if}
-				{/each}
-			</section>
-			{/if}
-
-			{#if graphics}
-			<h4 class="w-100 pt4">Graphic Design</h4>
-			<section class="no-clutter grid grid-columns-2 grid-columns-3-l gc3 gr3 w-100">
-				{#each graphics as {title, src, description, link}, i }
-				{#if title !== undefined && !title.toLowerCase().includes('draft') }
-					<a
-					href="{!link ? src : link}"
-					class="link ">
-						<Thumbnail {title} {src} {description} />
-					</a>
-				{/if}
-				{/each}
-			</section>
-			{/if}
-
-		<!--
-			{#if graphics}
-			<div class="w-100 w-third-l flex flex-column self-start">
-				<h4>Graphic Design</h4>
-				{#each graphics as graphic, i }
-					{@html marked(graphic) }
-				{/each}
+			<h4 class="dib mt4 ttc">
+				<span
+				on:keypress
+				on:click="{ () => $searchStore = $searchStore === 'Development' ? '' : 'Development' }"
+				class="br-pill ph3 pv1 pointer gray hover-black hover-bg-black-10 transition { !$searchStore ? 'bg-light-gray' : $searchStore.toLowerCase() === 'development' ? 'bg-black-30 white' : 'bg-light-gray' }">Development </span><span class="fw4">&nbsp;{@html !$searchStore ? '' : $searchStore.toLowerCase() === 'development' ? '' : development.length + ' hidden' }</span></h4>
+			<div class="{ !$searchStore || $searchStore.toLowerCase() === 'development' ? '' : 'dn' }">
+				<section class="no-clutter grid grid-columns-2 grid-columns-3-l gc3 gr3 w-100">
+					{#each development as {title, src, description, link}, i }
+					{#if title !== undefined && !title.toLowerCase().includes('draft') }
+						<a
+						href="{!link ? src : link}"
+						class="link ">
+							<Thumbnail {title} {src} {description} />
+						</a>
+					{/if}
+					{/each}
+				</section>
 			</div>
 			{/if}
-			<section class="highlight pt4 flex">
-				{#if development}
-				<div class="w-100 w-third-l mr2 flex flex-column self-start">
-					<h4>Development</h4>
-					{#each development as dev, i }
-						{@html marked(dev) }
-					{/each}
-				</div>
-				{/if}
-				{#if animations}
-				<div class="w-100 w-third-l mr2 flex flex-column self-start">
-					<h4>Animation</h4>
-					{#each animations as animation, i }
-						{@html marked(animation) }
-					{/each}
-				</div>
-				{/if}
-				{#if graphics}
-				<div class="w-100 w-third-l flex flex-column self-start">
-					<h4>Graphic Design</h4>
-					{#each graphics as graphic, i }
-						{@html marked(graphic) }
-					{/each}
-				</div>
-				{/if}
-			</section>
-			-->
+			<hr>
 
-			{#if conclusion}
+
+
+
+
+
+			{#if animations}
+			<h4 class="dib mt4 ttc">
+				<span
+				on:keypress
+				on:click="{ () => $searchStore = $searchStore === 'Animation' ? '' : 'Animation' }"
+				class="br-pill ph3 pv1 pointer gray hover-black hover-bg-black-10 transition { !$searchStore ? 'bg-light-gray' : $searchStore.toLowerCase() === 'animation' ? 'bg-black-30 white' : 'bg-light-gray' }">Animation </span><span class="fw4">&nbsp;{@html !$searchStore ? '' : $searchStore.toLowerCase() === 'animation' ? '' : animations.length + ' hidden' }</span></h4>
+			<div class="{ !$searchStore || $searchStore.toLowerCase() === 'animation' ? '' : 'dn' }">
+				<section class="no-clutter grid grid-columns-2 grid-columns-3-l gc3 gr3 w-100">
+					{#each animations as {title, src, description, link}, i }
+					{#if title !== undefined && !title.toLowerCase().includes('draft') }
+						<a
+						href="{!link ? src : link}"
+						class="link ">
+							<Thumbnail {title} {src} {description} />
+						</a>
+					{/if}
+					{/each}
+				</section>
+			</div>
+			{/if}
+			<hr>
+
+
+			<h4 class="dib mt4 ttc">
+				<span
+				on:keypress
+				on:click="{ () => $searchStore = $searchStore === 'Graphics' ? '' : 'Graphics' }"
+				class="br-pill ph3 pv1 pointer gray hover-black hover-bg-black-10 transition { !$searchStore ? 'bg-light-gray' : $searchStore.toLowerCase() === 'graphics' ? 'bg-black-30 white' : 'bg-light-gray' }">Graphics </span><span class="fw4">&nbsp;{@html !$searchStore ? '' : $searchStore.toLowerCase() === 'graphics' ? '' : graphics.length + ' hidden' }</span></h4>
+			<div class="{ !$searchStore || $searchStore.toLowerCase() === 'graphics' ? '' : 'dn' }">
+				<section class="no-clutter grid grid-columns-2 grid-columns-3-l gc3 gr3 w-100">
+				{#each mergedItems as { frag, title, description, src, tint }, idx}
+					{#if title !== undefined && !title.toLowerCase().includes('draft') }
+						<a
+							href
+							class="{ fragment == frag ? '' : 'dn' }
+							{idx === $activeIndexStore ? 'b--custom' : 'b--transparent'}
+							pointer ba bw2"
+							on:mouseover={ () => $yCorrect = y }
+							on:mouseover={ () => $activeIndexStore = idx }
+							on:click={ () => $modalOpen = true }
+							tabindex=0
+							on:keypress
+							on:focus>
+							<figure
+								class="square cover bg-center ma0 { tint ? tint : '' }"
+								style="background-image: url({src})">
+								<figcaption class="flex items-center justify-center hide-child">
+									{#if title}
+									<small class="square child white w-100 bg-black-90 tc f8 ttu tracked
+									flex flex-column items-center justify-center pa3">
+										<span class="w-100 ">{@html title}</span>
+										<div class="dn dn-ns dn-m db-l w-70">
+											{#if description}
+												<hr class="ba b--25 w-third o-60 mr-auto ml-auto"/>
+												<span>{@html description}</span>
+											{/if}
+										</div>
+									</small>
+									{/if}
+								</figcaption>
+							</figure>
+						</a>
+						{/if}
+					{/each}
+				</section>
+			</div>
+
+
+			{#if conclude}
 			<section class="highlight pt4">
 				<h4>Conclusion</h4>
-				{#each conclusion as conclude, i }
-					{@html marked(conclude) }
-				{/each}
+				<blockquote class="w-100 ma0">
+					<p class="
+					georgia i fw5
+					pl3 pl4-l
+					f4 f3-l
+					lh-copy lh-title-l
+					ma0 tr o-80">
+						{@html noWidowsNoOrphans(conclude) }
+					</p>
+					<cite class="w-100 mt0 pa0 tr db"><a href={endorsement} class=" no-underline ">&#8209;&nbsp;<span class="b link o-70 inherit hover-o-100 b--black bb bw0 transition hover-bw1 pt2 system f7 tracked ttu fs-normal" style="line-height:3px">{@html cite}</span></a>
+					</cite>
+				</blockquote>
 			</section>
 			{/if}
 
@@ -244,6 +254,7 @@
 </li>
 
 <style>
+	.b--custom { border-color: rgba(128, 128, 128, 0.1) }
 
 	::-webkit-details-marker { display: none }
 

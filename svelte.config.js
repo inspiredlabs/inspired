@@ -16,7 +16,8 @@ const config = {
 		//adapter: vercel(),
 		adapter: adapter(),
 		alias: {
-			$routes: path.resolve('./src/routes')
+			$routes: path.resolve('./src/routes'),
+			$lib: path.resolve('./src/lib')
 		}
 	},
 

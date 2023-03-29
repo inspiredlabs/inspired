@@ -36,7 +36,10 @@
 			</button>
 		</li>
 		<li class="fl w-100">
-			<button class="source-sans fw3 pointer bn bg-transparent charcoal transition hover-o-100 o-60 pl0" on:keypress on:click={ () => $modalOpen = true }>
+			<button class="source-sans fw3 pointer bn bg-transparent charcoal transition hover-o-100 o-60 pl0"
+			on:keypress={ () => $modalOpen = true }
+			on:click={ () => $modalOpen = true }
+			>
 				<!-- usage: toggle: on:click={ () => $modalOpen === true ? $modalOpen = false : $modalOpen = true } -->
 				<small class="db dn-ns dn-m dn-l">Portfolio</small>
 				<span class="dn db-ns db-m db-l">Portfolio</span>
