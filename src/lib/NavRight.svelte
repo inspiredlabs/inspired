@@ -51,20 +51,13 @@
 				<span class="dn db-ns db-m db-l">Contact</span>
 			</button>
 		</li>
-		<!-- <li class="fl w-100">
-			<a
-			class="link source-sans fw3 pointer charcoal transition hover-o-100 o-60 pl0" href="#contact">
-				<small class="db dn-ns dn-m dn-l">Contact</small>
-				<span class="dn db-ns db-m db-l">Contact</span>
-			</a>
-		</li> -->
 	</ul>
 </nav>
 
-<style>
+<!-- <style>
 	:global(:focus) {
 		outline: 0.5rem auto cyan;
   	outline: 0.5rem auto -webkit-focus-ring-color;
 	}
 
-</style>
+</style> -->

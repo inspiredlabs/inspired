@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://www.rozek.de/CSS3/Selectors/index_en.html -->
+<!-- <html lang="en" style="width:100%" class=" wvzaaemlr idc0_343"> -->
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, viewport-fit=cover">
+  <!--minimal-ui, width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no -->
+
+  <!-- <meta canonical="https://www.rozek.de/CSS3/Selectors/index_en.html"> -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <title>CSS Selectors (Cheatsheet)</title>
+
+  <style>
+    html {
+      text-size-adjust: 100%;
+      -moz-text-size-adjust:100%; -webkit-text-size-adjust:100%;
+      -o-text-size-adjust:100%; -ms-text-size-adjust:100%;
+    }
+
+  html, body {
+    /* width:99%; height:99%; */
+
+    /* background-color: #627AC6; */
+    /* background-image: url(/common/BinaryTexture.png); */
+    /* background-repeat:repeat; */
+
+    font-family:'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size:14px; font-weight:400; color:white;
+
+  }
+
+  html { overflow:hidden scroll }
+
+  * {
+    -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;
+  }
+
+/**** for native controls *without* native appearance ****/
+
+  .stylableContent {
+    appearance:none;       -webkit-appearance:none;       -moz-appearance:none;
+    box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;
+    position:absolute; visibility:inherit;
+    border:none; margin:0px; padding:0px;
+    font-family:inherit; font-size:inherit; font-weight:inherit; font-style:inherit;
+    color:inherit; background:transparent;
+  }
+
+/**** custom Scrollbars ****/
+
+  ::-webkit-scrollbar { width:10px; height:10px }
+  ::-webkit-scrollbar-thumb {
+    background-color:#808080; border-radius:4px;
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.5);
+  }
+  ::-webkit-scrollbar-track-piece { background-color:rgba(0,0,0,0.1) }
+  ::-webkit-scrollbar-corner      { background-color:rgba(0,0,0,0.1) }
+
+/**** NBP-centralArea - horizontally centered ****/
+
+  .NBP-centralArea {
+    display:inline-flex; flex-flow:column nowrap;
+    align-items:stretch; align-content:flex-start;
+    position:absolute; overflow:visible;
+    left:0px; top:10px; right:0px;
+    width:640px; min-width:640px; max-width:640px;
+    height:auto;
+    margin:0px auto; /* actually centers "centralArea" horizontally */
+
+    padding:0px; padding-bottom:60px; /* for Pages only, room for Panel */
+  }
+
+/**** NBP-ContentArea - with paper-like background ****/
+
+  .NBP-ContentArea {
+    box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;
+
+    display:block; flex:0 0 auto; position:relative;
+    width:      640px; min-width:640px; max-width:640px;
+    height:     auto;
+    margin:     0px 0px 10px 0px;
+    overflow:   visible;
+    /* background: #EEEEEE url(/common/Paper.png) repeat; */
+    border-radius: 2px;
+    color:      #222222;
+    padding:    0px 10px 10px 10px;
+    line-height:147%;
+
+    /*
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow:    0px 0px 20px 0px rgba(0,0,0,0.5);
+    box-shadow:         0px 0px 20px 0px rgba(0,0,0,0.5); */
+  }
+/**** NBP-PageHeader ****/
+
+  .NBP-PageHeader {
+    display:flex; flex-flow:row nowrap; flex:0 0 auto; align-items:center;
+    position:relative;
+    top:2px;
+    margin:0px 0px 0px 2px;
+    padding:4px 0px 0px 0px;
+    font-weight:400;
+    color:#ffffff;
+  }
+
+  .NBP-PageHeader a:link, .NBP-PageHeader a:visited, .NBP-PageHeader a:hover {
+    color:           #ffffff;
+    text-decoration: none;
+  }
+
+  .NBP-Flag {
+    display:inline-block; position:relative;
+    top:1px; width:14px; height:10px;
+  }
+
+/**** NBP-PageHeader ****/
+
+  .NBP-PageFooter {
+    display:flex; flex-flow:row nowrap; flex:0 0 auto; align-items:center;
+    position:relative;
+    top:-8px;
+    margin:0px 0px 0px 2px;
+    padding:4px 0px 0px 0px;
+    font-size:11px;
+    font-weight:400;
+    color:#ffffff;
+  }
+
+  .NBP-PageFooter a:link, .NBP-PageFooter a:visited, .NBP-PageFooter a:hover {
+    color:           #ffffff;
+    text-decoration: none;
+  }
+/**** NBP-PageView - initially hidden! ****/
+
+  /* .NBP-PageView {
+    display:none; position:relative; overflow:visible;
+    min-height:400px;
+    margin:0px; padding:10px;
+  } */
+
+/**** NBP-StripeView ****/
+
+  .NBP-StripeView {
+    box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;
+
+    display:block; position:relative;
+    left:0px; top:0px; width:600px; height:100%;
+    min-width:600px; max-width:600px; min-height:20px;
+  }
+
+  .NBP-ExpansionButton:checked ~ .NBP-StripeView {
+    display:none;
+  }
+
+  .NBP-StripeView:before {
+    content:' ';
+    display:block; position:absolute;
+    left:-8px; top:0px; bottom:0px; width:4px; height:auto;
+  }
+
+  .NBP-StripeView.redTag:before    { background-color:red }
+  .NBP-StripeView.orangeTag:before { background-color:orange }
+  .NBP-StripeView.yellowTag:before { background-color:yellow }
+  .NBP-StripeView.greenTag:before  { background-color:green }
+  .NBP-StripeView.blueTag:before   { background-color:blue }
+  .NBP-StripeView.violetTag:before { background-color:violet }
+  .NBP-StripeView.grayTag:before   { background-color:gray }
+
+/**** NBP-StripeDisplay ****/
+
+  .NBP-StripeDisplay {
+    box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;
+
+    display:block; position:relative;
+    left:0px; top:0px; width:100%; height:100%;
+  }
+
+/**** NBP-ExpansionButton ****/
+
+  .NBP-ExpansionButton {
+    -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;
+    -moz-appearance:none; -webkit-appearance:none; appearance:none;
+
+    display:block; position:absolute;
+    top:0px; right:0px; width:30px; height:30px;
+    background:none;
+    border:solid 2px transparent;
+    padding:0px; margin:0px;
+  }
+  .NBP-ExpansionButton.nextToCommentButton {
+    right:10px;
+  }
+
+  .NBP-ExpansionButton:before {
+    content:'\f0d7';
+    display:block; position:absolute;
+    left:-2px; top:-2px; width:30px; height:30px;
+    font-family: FontAwesome;
+    font-size:   20px;
+    line-height: 30px;
+    text-align:  center;
+    color:       #888888;
+  }
+  .NBP-ExpansionButton:hover:before {
+    left:-4px; top:-4px;
+    border:solid 2px #005FCC;
+    border-radius:4px;
+  }
+
+  .NBP-ExpansionButton:checked:before {
+    content:'\f0d9';
+    display:block; position:absolute;
+    left:-2px; top:-2px; width:30px; height:30px;
+    font-family: FontAwesome;
+    font-size:   20px;
+    line-height: 30px;
+    text-align:  center;
+    color:       #FC5400;
+  }
+  .NBP-ExpansionButton:checked:hover:before {
+    left:-4px; top:-4px;
+    border:solid 2px #005FCC;
+    border-radius:4px;
+  }
+
+/**** NBP-CommentButton ****/
+
+  .NBP-CommentButton {
+    display:none;
+  }
+
+  .NBP-CommentButton.enabled {
+    -moz-box-sizing:border-box; -webkit-box-sizing:border-box; box-sizing:border-box;
+    -moz-appearance:none; -webkit-appearance:none; appearance:none;
+
+    display:block; position:absolute;
+    top:0px; right:-20px; width:30px; height:30px;
+    background:none;
+    border:solid 2px transparent;
+    padding:0px; margin:0px;
+  }
+
+  .NBP-CommentButton.enabled:before {
+    content:'\f040';
+    display:block; position:absolute;
+    left:-2px; top:-2px; width:30px; height:30px;
+    font-family: FontAwesome;
+    font-size:   20px;
+    line-height: 30px;
+    text-align:  center;
+    color:       #888888;
+  }
+
+  .NBP-CommentButton.enabled.withComment:before {
+    content:'\f044';
+    display:block; position:absolute;
+    left:-2px; top:-2px; width:30px; height:30px;
+    font-family: FontAwesome;
+    font-size:   20px;
+    line-height: 30px;
+    text-align:  center;
+    color:       #888888;
+  }
+
+  .NBP-CommentButton.enabled:hover:before {
+    left:-4px; top:-4px;
+    border:solid 2px #005FCC;
+    border-radius:4px;
+  }
+
+/**** NBP-Comment ****/
+
+  .NBP-Comment {
+    display:block; position:relative;
+    border:none; border-top:solid 16px #EEEBAA;
+    outline:solid 1px #888888;
+    margin:10px 0px 10px 0px; padding:0px;
+    background:#FFFFE0;
+  }
+
+  .NBP-CommentTitle {
+    display:block; position:absolute;
+    left:4px; top:-16px;
+    height:16px; line-height:16px;
+    font-size:12px;
+    color:black;
+  }
+
+  .NBP-CommentCloseButton {
+    appearance:none; -webkit-appearance:none; -moz-appearance:none;
+
+    display:block; position:absolute;
+    top:-16px; right:0px; width:16px; height:16px;
+    background:none;
+    border:none;
+    padding:0px; margin:0px;
+  }
+
+  .NBP-CommentCloseButton:after {
+    content:'\f00d';
+    display:block; position:absolute;
+    left:0px; top:0px; width:16px; height:16px;
+    font-family: FontAwesome;
+    font-size:   14px;
+    line-height: 16px;
+    text-align:  center;
+    color:       #888888;
+  }
+
+  .NBP-CommentEditor {
+    width:100%; height:100%;
+    max-width:100%;
+    min-height:100px;
+    border:none;
+    background:none;
+    margin:0px; padding:4px;
+  }
+
+/**** NBP-PageSettingsUploadButton ****/
+
+  .NBP-PageSettingsUploadButton {
+    appearance:none; -webkit-appearance:none; -moz-appearance:none;
+
+    display:inline-block; position:relative;
+    width:16px; height:16px;
+    background:none;
+    border:none;
+    padding:0px; margin:0px;
+  }
+
+  .NBP-PageSettingsUploadButton > label {
+    display:block; position:absolute;
+    left:0px; top:3px; width:16px; height:16px;
+  }
+
+  .NBP-PageSettingsUploadButton > label:after {
+    content:'\f093';
+    display:block; position:absolute;
+    left:0px; top:0px; width:16px; height:16px;
+    font-family: FontAwesome;
+    font-size:   14px;
+    line-height: 16px;
+    text-align:  center;
+    color:       #888888;
+  }
+
+  .NBP-hiddenFileInput {
+    width:0.1px; height:0.1px; opacity:0;
+    overflow:hidden;
+    position:absolute; z-index:-1;
+  }
+
+/**** NBP-PageSettingsDownloadButton ****/
+
+  .NBP-PageSettingsDownloadButton {
+    appearance:none; -webkit-appearance:none; -moz-appearance:none;
+
+    display:inline-block; position:relative;
+    top:-4px; width:16px; height:16px;
+    background:none;
+    border:none;
+    padding:0px; margin:0px;
+  }
+
+  .NBP-PageSettingsDownloadButton:after {
+    content:'\f019';
+    display:block; position:absolute;
+    left:0px; top:0px; width:16px; height:16px;
+    font-family: FontAwesome;
+    font-size:   14px;
+    line-height: 16px;
+    text-align:  center;
+    color:       #888888;
+  }
+
+/**** HTML Stripes (and their contents) ****/
+
+  .NBP-HTMLView {
+    padding:0px;
+    white-space:normal;
+  }
+
+  .NBP-HTMLView p {
+    position:    relative;
+    margin:      10px 0px 0px 0px;
+    color:       #222222;
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size:   14px;
+    line-height: 150%;
+    text-align:  justify;
+  }
+
+  .NBP-HTMLView b      { color: #444444; font-weight: bold }
+  .NBP-HTMLView em     { color: #222222; font-style:  italic }
+  .NBP-HTMLView strong { color: #444444; font-weight: bold }
+  .NBP-HTMLView del    { color: #222222; text-decoration: line-through }
+
+  .NBP-HTMLView kbd { /* for inline code without highlighting */
+    font-family: monospace; /* 'Lucida Console', 'Courier New', Courier,  */
+    font-weight: 600;
+    border:      none;
+  }
+
+  .NBP-HTMLView a:link {
+    text-decoration: underline;
+    color:           #6666ff;
+  }
+  .NBP-HTMLView a:visited {
+    text-decoration: underline;
+    color:           #cc00cc;
+  }
+
+  .NBP-HTMLView h1, .NBP-HTMLView h2, .NBP-HTMLView h3,
+  .NBP-HTMLView h4, .NBP-HTMLView h5, .NBP-HTMLView h6 {
+    position:    relative;
+    margin:      8px 0px 0px 0px;
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    line-height: 150%;
+  }
+
+  .NBP-HTMLView h1 { left:-2px; font-size:28px; color:#777777 }
+  .NBP-HTMLView h2 { left:-2px; font-size:24px; color:#666666; margin-top:12px; padding-bottom:2px; border-bottom:solid 1px #999999 }
+  .NBP-HTMLView h3 { left:-1px; font-size:20px; color:#555555 }
+  .NBP-HTMLView h4 { left:-1px; font-size:18px; color:#444444 }
+  .NBP-HTMLView h5 {            font-size:17px; color:#333333 }
+  .NBP-HTMLView h6 {            font-size:16px; color:#222222 }
+
+/**** reduced indentations for lists ****/
+
+  .NBP-HTMLView ul { margin-top:8px; margin-left:0px; padding-left:20px }
+  .NBP-HTMLView ol { margin-top:8px; margin-left:0px; padding-left:24px }
+  .NBP-HTMLView li {}
+
+  .NBP-HTMLView li > ul { margin-top:0px }
+  .NBP-HTMLView li > ol { margin-top:0px }
+
+/**** custom quote styling ****/
+
+  .NBP-HTMLView blockquote {
+    margin-left:  4px;
+    border-left:  solid 4px #999999;
+    padding-left: 8px;
+    margin-right: 0px;
+  }
+
+/**** table styling ****/
+
+  .NBP-HTMLView table, .NBP-HTMLView caption { /* fix quirks-mode inheritance behavior */
+    font-size:    inherit;
+    font-weight:  inherit;
+    font-style:   inherit;
+    font-variant: inherit;
+    color:        inherit;
+  }
+
+  .NBP-HTMLView tr { vertical-align:top }
+
+/**** alternating background for code lines ****/
+
+  .NBP-HTMLView pre {
+    display:   block;
+    max-width: 600px;
+    overflow:  auto;
+    margin:    6px 0px 6px 0px; /* room above and below preformatted paragraphs */
+    padding:   0px 1px 0px 1px;
+  }
+
+  .NBP-HTMLView code { /* for inline code without highlighting */
+    padding:     0px 2px 0px 2px;
+    background:  #E8E8E8;
+    color:       #444444;
+    font-family: monospace; /* 'Lucida Console', 'Courier New', Courier,  */
+    font-size:   13px; /* a bit more than for code blocks */
+    font-weight: 600;
+    border:      none;
+  }
+</style>
+
+
+
+
+
+</head>
+<body>
+<div class="NBP-centralArea">
+<!--
+  <div class="NBP-PageHeader">
+    <div style="position:relative; top:-3px">
+      <a href="https://www.rozek.de/index_en.html">Andreas Rozek</a>
+    </div>
+    <div style="position:absolute; top:0px; right:0px; white-space:nowrap">
+      [ <a href="https://www.rozek.de/Imprint/index_en.html">Imprint</a> ] &nbsp;
+      [ <a href="https://www.rozek.de/Privacy/index_en.html">Data Privacy Statement</a> ] &nbsp;
+      [ <a href="https://www.rozek.de/Contact/index_en.html">Contact</a> ] &nbsp;
+      &nbsp; &nbsp;
+      [ <a href="https://www.rozek.de/CSS3/Selectors/index_de.html"><img src="./index_files/Flag_DE.png" class="NBP-Flag" alt="deutsche Fassung" title="deutsche Fassung"></a> ] &nbsp; <img src="./index_files/Flag_EN.png" class="NBP-Flag" alt="english version" title="english version">
+    </div>
+  </div> -->
+<div class="NBP-ContentArea">
+<div class="NBP-PageView">
+<div id="864fe5ae-e34e-4d43-b19a-9e179118840c" class="NBP-StripeView ">
+<div class="NBP-CommentButton"></div>
+<div class="NBP-StripeDisplay NBP-HTMLView">
+<h1 style="color: blue; opacity: .5">CSS Selectors (Cheatsheet)</h1>
+
+</div>
+</div>
+<div id="c47c90d9-acf4-42a3-8487-d5a371db2880" class="NBP-StripeView ">
+<div class="NBP-CommentButton"></div>
+<div class="NBP-StripeDisplay NBP-HTMLView">
+<style type="text/css">
+  .QuickRef2Col *         { font-size:10px }
+  .QuickRef2Col table     { border:solid 1px silver; width:100%; margin-bottom:4px }
+  .QuickRef2Col .Header   { /*background:#444444; color:white;*/ font-weight:bold }
+  .QuickRef2Col .light    { background:transparent }
+  .QuickRef2Col .light td:first-child, .dark td:first-child { font-family: monospace; }
+  .QuickRef2Col .light td:last-child, .dark td:last-child { color: blue; }
+
+  .QuickRef2Col .light td:first-child { padding:0px 3px 0px 6px }
+  .QuickRef2Col .light td:last-child  { padding:0px 6px 0px 3px }
+  .QuickRef2Col .dark     { background:#f1f1f1 }
+  .QuickRef2Col .dark  td:first-child { padding:0px 3px 0px 6px }
+  .QuickRef2Col .dark  td:last-child  { padding:0px 6px 0px 3px }
+</style>
+<table class="QuickRef2Col"><tbody><tr valign="top">
+ <td width="48%">
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>Basic CSS Selectors</center></td>
+    </tr>
+    <tr class="light"><td>tag</td>      <td>elements of type "tag"</td></tr>
+    <tr class="dark"><td>.class</td>   <td>elements with class "class"</td></tr>
+    <tr class="light"><td>tag.class</td><td>elements of type "tag" and also with class "class"</td></tr>
+    <tr class="dark"><td>#id</td>      <td>elements with id "id"</td></tr>
+    <tr class="light"><td>*</td>        <td>all elements (normally used with combinators)</td></tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>CSS Selector Grouping</center></td>
+    </tr>
+    <tr class="light"><td>x,y,z</td><td>elements of any given selector</td></tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>CSS Pseudo Class Selectors</center></td>
+    </tr>
+    <tr class="light"><td>x:hover</td>     <td>x while mouse pointer over it</td></tr>
+    <tr class="dark"><td>x:active</td>    <td>x while mouse pointer pressed</td></tr>
+    <tr class="light"><td>a:link</td>      <td>unvisited link</td></tr>
+    <tr class="dark"><td>a:visited</td>   <td>visited link</td></tr>
+    <tr class="light"><td>x:fullscreen</td><td>x while in fullscreen mode</td></tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>CSS &lt;form&gt; Element Pseudo Class Selectors</center></td>
+    </tr>
+    <tr class="light"><td>x:checked</td>      <td>x if in "checked" state</td></tr>
+    <tr class="dark"><td>x:default</td>      <td>x if it represents the default in its group</td></tr>
+    <tr class="light"><td>x:disabled</td>     <td>x if disabled</td></tr>
+    <tr class="dark"><td>x:enabled</td>      <td>x if enabled (i.e., not disabled)</td></tr>
+    <tr class="light"><td>x:empty</td>      <td>x if empty</td></tr>
+    <tr class="dark"><td>x:focus</td>        <td>x if it owns the keyboard focus</td></tr>
+    <tr class="light"><td>x:focus-within</td> <td>x if itself or a descendant owns focus</td></tr>
+    <tr class="dark"><td>x:indeterminate</td><td>x if its state is indeterminate</td></tr>
+    <tr class="light"><td>x:invalid</td>      <td>x if its value does not validate successfully</td></tr>
+    <tr class="dark"><td>x:optional</td>     <td>x if its "required" attribute was not set</td></tr>
+    <tr class="light"><td>x:required</td>     <td>x if its "required" attribute was set</td></tr>
+    <tr class="dark"><td>x:read-only</td>    <td>x if its "readonly" attribute was set</td></tr>
+    <tr class="light"><td>x:read-write</td>   <td>x if its "readonly" attribute was not set</td></tr>
+    <tr class="dark"><td>x:valid</td>        <td>x if its value validates successfully</td></tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>CSS Pseudo Element Selectors</center></td>
+    </tr>
+    <tr class="light"><td>x::first-letter</td><td>first letter of x</td></tr>
+    <tr class="dark"><td>x::first-line</td>  <td>first line of x</td></tr>
+    <tr class="light"><td>x::selection</td>   <td>user-selected text</td></tr>
+    <tr class="dark"><td>x::before</td>      <td>inserts content before x</td></tr>
+    <tr class="light"><td>x::after</td>       <td>inserts content after x</td></tr>
+  </tbody></table>
+ </td>
+ <td width="48%">
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>General CSS Combinators</center></td>
+    </tr>
+    <tr class="light"><td>x y</td>  <td>general descendant y of x (y may be *)</td></tr>
+    <tr class="dark"><td>x &gt; y</td><td>direct descendant y of x (child, y may be *)</td></tr>
+    <tr class="light"><td>x + y</td><td>adjacent sibling y of x (y may be *)</td></tr>
+    <tr class="dark"><td>x ~ y</td><td>general sibling y of x (y may be *)</td></tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>CSS Child Combinators</center></td>
+    </tr>
+    <tr class="light"><td>x:only-child</td>         <td>x if only child of its parent</td></tr>
+    <tr class="dark"><td>x:first-child</td>        <td>x if 1st child of its parent</td></tr>
+    <tr class="light"><td>x:last-child</td>         <td>x if last child of its parent</td></tr>
+    <tr class="dark"><td>x:nth-child(n)</td>       <td>x if nth child of its parent</td></tr>
+    <tr class="light"><td>x:nth-last-child(n)</td>  <td>x if nth-last child of its parent</td></tr>
+    <tr class="dark"><td>x:only-of-type</td>       <td>x if only of its type in its parent</td></tr>
+    <tr class="light"><td>x:first-of-type</td>      <td>x if first of its type in its parent</td></tr>
+    <tr class="dark"><td>x:last-of-type</td>       <td>x if last of its type in its parent</td></tr>
+    <tr class="light"><td>x:nth-of-type(n)</td>     <td>x if nth of its type in its parent</td></tr>
+    <tr class="dark"><td>x:nth-last-of-type(n)</td><td>x if nth-last of its type in its parent</td></tr>
+    <tr class="Header">
+      <td colspan="2"><center>Some Examples for "n"</center></td>
+    </tr>
+    <tr class="light"><td>even</td><td>every even numbered element</td></tr>
+    <tr class="dark"><td>2n</td>  <td>(same as above)</td></tr>
+    <tr class="light"><td>odd</td> <td>every odd numbered element</td></tr>
+    <tr class="dark"><td>2n+1</td><td>(same as above)</td></tr>
+    <tr class="light"><td>3n</td>  <td>elements no. 3,6,9,...</td></tr>
+    <tr class="dark"><td>3n+1</td><td>elements no. 1,4,7,...</td></tr>
+    <tr class="light"><td>3n+2</td><td>elements no. 2,5,8,...</td></tr>
+    <tr class="dark"><td>n+5</td> <td>5th element and following</td></tr>
+    <tr class="light"><td>-n+4</td><td>1st to 4th element</td></tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>CSS Attribute Selectors</center></td>
+    </tr>
+    <tr class="light"><td>x[attr]</td>       <td>x if attribute "attr" is present</td></tr>
+    <tr class="dark"><td>x[attr="val"] </td><td>x if value of "attr" equals "val"</td></tr>
+    <tr class="light"><td>x[attr*="val"]</td><td>x if value of "attr" contains "val"</td></tr>
+    <tr class="dark"><td>x[attr~="val"]</td><td>x if "attr" contains whitespace-sep. value "val"</td></tr>
+    <tr class="light"><td>x[attr|="val"]</td><td>x if "attr" contains hyphen-separated value "val"</td></tr>
+    <tr class="dark"><td>x[attr^="val"]</td><td>x if value of "attr" begins with "val"</td></tr>
+    <tr class="light"><td>x[attr$="val"]</td><td>x if value of "attr" ends with "val"</td></tr>
+    <tr >
+      <!-- class="Header" -->
+      <td colspan="2"><center>add " <code>i</code>" before "<code>]</code>" for case-insensitive matches</center></td>
+    </tr>
+  </tbody></table>
+  <table cellspacing="0" cellpadding="0"><tbody>
+    <tr class="Header">
+      <td colspan="2"><center>Miscellaneous Other CSS Selectors</center></td>
+    </tr>
+    <tr class="light"><td>x:not(y)</td><td>x if y does not apply</td></tr>
+    <tr class="dark"><td>x:empty</td> <td>x if it contains neither text nor elements</td></tr>
+    <tr class="light"><td>:root</td>   <td>the &lt;html&gt; element</td></tr>
+    <!-- <tr class="light"><td style="text-decoration:line-through">:scope</td><td style="text-decoration:line-through">element used as reference for other selectors</td></tr> -->
+    <tr class="dark"><td>:target</td> <td>element whose id matches document URL fragment</td></tr>
+  </tbody></table>
+ </td>
+</tr></tbody></table>
+
+</div>
+</div>
+</div>
+</div>
+
+<!--
+<div class="NBP-PageFooter">
+  <a href="https://www.rozek.de/CSS3/Selectors/index_en.html">https://www.rozek.de/CSS3/Selectors/index_en.html</a>
+  <div style="position:absolute; top:2px; right:0px">02/05/2021</div>
+</div> -->
+</div>
+
+
+<!-- <style>
+  .NBP-PageView { display:block }
+</style> -->
+
+</body></html>

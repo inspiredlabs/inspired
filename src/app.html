@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" style="background-color:#f8f8f8" class="system backface-hidden overflow-x-hidden">
-<!-- shadow-5 w-100 h-100 overflow-hidden -->
 	<head>
 		<meta charset="utf-8" />
+
+		<!-- SEO `<meta name="robots" content="indexifembedded">` -->
+		<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+		<link rel="canonical" href="https://inspiredlabs.co.uk/" />
+		<link rel="publisher" href="https://inspiredlabs.co.uk/" />
+		<meta name="apple-mobile-web-app-title" content="Inspired Labs">
+		<!-- charactercountonline.com -->
+		<title data-chars="80" >Inspired Labs, is a Design & Development agency transforming Customer Experience</title>
+		<meta data-chars="138" name="description" content="Design can save you time & money, while meeting customer goals. Scott Phillips can help you improve your business on a subscription basis.">
+		<meta name="keywords" content="scott phillips, oxford web design, London web design, web design in the UK, European website company, Europe website, GDPR, compliant, mediterranean web design, Design & Development, National Geographic Expeditions Italy, Animation, Graphics, Content, UX, visual components, Kel12 Genova, Maurizio Levi, viaggilevi.vercel.app, Proof‑of‑concept, Customer Experience Design, Wordpress Template Design, UI proof‑of‑concept, UX Research, Persona insight, Success animation, visual feedback for task completion, Animated logo, Animated app design, Sveltekit Graphics, subscription layout design, Template Design, Wordpress template concepts, Logo Design, Colour pairings, app icon design, Business Card Designer, Nudging, Customer Behaviour, Landing-page Design, Content Design, app proof‑of‑concept, Alessandro Ronca Ice Coach, Alessandro Ronca Facilitator, The Disco Bunny, Celebrity Website Design, Sustability Research, Sustability Design, Pablo Woodward, Tom Clutterbuck Fringe Show, Vaultarch, Preventing counterfeit, theft and fraud, Sales Material Design, Jargon-free writing, Illustrated Logo, Award Winning Designer, Museums & Heritage Award, Mallinson Architects & Engineers, revolutionised client communication, Taste of the Mediterrean, Design, Development & Strategy, design for gourmet eateries, price list design, AI generated images, sales using AI, Clowns Without Borders, design for large charities, NGO designer, designer with NGO experience, layout designer, design for fundraising, InstantWebapp, Design & Development for entrepreneurs, design to derisk small business, mobile app designer, design service for mobile app, Designer for Harvard Business School, Animated presentation designer, Designer for Telecom Italia Mobile, customer experience designer, design agency, subscription designer, subscription developer">
+		<!-- /SEO -->
+
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<!-- learn: stephenradford.me/removing-the-white-bars-in-safari-on-iphone-x/ -->
 		<meta name="viewport" content="width=device-width, viewport-fit=cover" />
+		<link rel="preload" href="https://inspiredlabs.co.uk/css/SourceSans3VF-Roman.ttf.woff2" as="font" type="font/woff2" crossorigin>
+		<style>
+		/* learn: css-tricks.com/inclusively-hidden */
+		.sr-only:not(:focus):not(:active) {
+		  clip: rect(0 0 0 0);
+		  clip-path: inset(50%);
+		  height: 1px;
+		  overflow: hidden;
+		  position: absolute;
+		  white-space: nowrap;
+		  width: 1px;
+		}
+		</style>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
-		<!-- class="no-clutter vh-100 w-100 h-100 overflow-x-hidden overflow-y-auto smooth-scroll" -->
+		<h1 class="sr-only">Inspired Labs</h1>
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
-
-<!--
-installation:
-```
-npm create svelte@latest inspired
-&& cd inspired
-&& npm i
-&& npm i nprogress
-&& npm i -D svelte-animated-details
-&& npm i @neodrag/svelte
-&& npm install git://github.com/ile/urlize.git && npm i --save-dev @types/urlize
-&&
-&&
-&&
-
-&& npm run dev -- --open
-```
--->
